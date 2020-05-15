@@ -1,2 +1,5 @@
-This project is based on detecting accident on highways and informing to nearest hospital and police station
-This model is trained on 1000+ images which is not uploaded and can be easily found on internet for training,cros-validating and testing the model
+This project is made for detecting accident on highways and informing to nearest hospital and police station in order to save the large number of lives lost everyday all over the world due to road accidents.
+
+This model is trained on 1000+ images which are not uploaded and can be easily found on internet for training,cross-validating and testing the model.
+
+The testing of the model can be done by an accident video.
