@@ -16,6 +16,7 @@ j=1
 cam = cv2.VideoCapture('test.mp4')
 cap = cv2.VideoCapture('test.mp4')
 
+# Setting up the email system
 s = smtplib.SMTP('smtp.gmail.com', 587)
 s.starttls()
 s.login("sender's_mail_id", "sender's_mail_password")
