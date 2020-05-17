@@ -101,7 +101,7 @@ To run the project, open Command Prompt, and change the directory to where this 
 
 The tech stack we used is mainly Machine Learning and Deep Laerning. We also implemented image processing by OpenCV in it.
 
-## 3.) Traffic Sign Reognition and Smart OverSpeed Warning
+## 3.) Traffic Sign Recognition and Smart OverSpeed Warning
 
 Traffic signs provide valuable information to drivers and other road-users. Neglecting them can be fatal.
 Many times in long journey drivers miss road safety signals and don't give much attention on it due to which many accidents occur.
