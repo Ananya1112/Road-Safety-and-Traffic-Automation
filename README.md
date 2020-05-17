@@ -158,6 +158,8 @@ Calibrated picutre:
 
 We have implemented the rCNN based model of Deep Learning. We are also making use of Image processing by OpenCV for live webcam identification of traffic signs.
 
+![rCNN](https://github.com/Ananya1112/Road-Safety-and-Traffic-Automation/blob/master/Traffic%20Sign%20Recognition%20and%20Smart%20Warning/rCNN.png)
+
 For speedometer, we have implemented openCV based image processing and some mathematical calculations.
 
 ### Future Scope:
