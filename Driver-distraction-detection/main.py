@@ -9,6 +9,7 @@ import cv2
 
 # Some supporting functions for facial processing
 
+# A function to select the rectangle having the largest face area
 def get_max_area_rect(rects):
     if len(rects)==0: return
     areas=[]
@@ -16,12 +17,14 @@ def get_max_area_rect(rects):
         areas.append(rect.area())
     return rects[areas.index(max(areas))]
 
+# This function calculates the aspect ratio of each eye
 def get_eye_aspect_ratio(eye):
     vertical_1 = distance.euclidean(eye[1], eye[5])
     vertical_2 = distance.euclidean(eye[2], eye[4])
     horizontal = distance.euclidean(eye[0], eye[3])
     return (vertical_1+vertical_2)/(horizontal*2) #aspect ratio of eye
 
+# This function calculates the aspect ratio of the mouth
 def get_mouth_aspect_ratio(mouth):
     horizontal=distance.euclidean(mouth[0],mouth[4])
     vertical=0
@@ -30,8 +33,7 @@ def get_mouth_aspect_ratio(mouth):
     return vertical/(horizontal*3) #mouth aspect ratio
 
 
-# Facial processing
-
+# Our main function to begin with Facial processing
 def facial_processing():
     mixer.init()
     distracton_initlized = False
@@ -41,7 +43,7 @@ def facial_processing():
     detector    = dlib.get_frontal_face_detector()
     predictor   = dlib.shape_predictor(shape_predictor_path)
 
-    ls,le = face.FACIAL_LANDMARKS_IDXS["left_eye"]
+    ls,le = face.FACIAL_LANDMARKS_IDXS["left_eye"]  # FACIAL_LANDMARKS_IDXS is a fucntion containg indices of all human face parts
     rs,re = face.FACIAL_LANDMARKS_IDXS["right_eye"]
 
     cap=cv2.VideoCapture(0)
@@ -60,8 +62,6 @@ def facial_processing():
         cv2.putText(frame, "FPS :"+str(fps_to_display), (frame.shape[1]-100, frame.shape[0]-10),\
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
-
-        #frame = imutils.resize(frame, width=900)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         rects = detector(gray, 0)
@@ -83,7 +83,8 @@ def facial_processing():
             mar=get_mouth_aspect_ratio(inner_lips)
 
             eye_aspect_ratio = (leftEAR + rightEAR) / 2.0
-
+ 
+	    # Commands to draw the contours on the eyes and mouth	 
             leftEyeHull = cv2.convexHull(leftEye)
             rightEyeHull = cv2.convexHull(rightEye)
             cv2.drawContours(frame, [leftEyeHull], -1, (255, 255, 255), 1)
@@ -93,7 +94,8 @@ def facial_processing():
 
             cv2.putText(frame, "EAR: {:.2f} MAR: {:.2f}".format(eye_aspect_ratio,mar), (10, frame.shape[0]-10),\
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-
+            
+	     # Code to detect drowsiness
             if eye_aspect_ratio < EYE_DROWSINESS_THRESHOLD:
 
                 if not eye_initialized:
@@ -113,7 +115,7 @@ def facial_processing():
                 if not distracton_initlized and not mouth_initialized and mixer.music.get_busy():
                     mixer.music.stop()
 
-
+            # Code to detect yawning
             if mar > MOUTH_DROWSINESS_THRESHOLD:
 
                 if not mouth_initialized:
@@ -135,7 +137,7 @@ def facial_processing():
 
 
         else:
-
+            # Distraction part
             alarm_type=1
             if not distracton_initlized:
                 distracton_start_time=time.time()
