@@ -60,6 +60,11 @@ Then enter the following line in the command line:
 
 The main tech stack used was Image processing and trained Deep Learning models were used for the accurate detection of facial expressions.  
 
+### Future Scope:
+
+We are planning to convert this python code into an api so that it can be used more frequently by other developers and will ultimately
+result in greater safety in the road.
+
 ## 2.) Accident Detection and Mail System
 
 This model is still under progress.
