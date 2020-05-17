@@ -15,7 +15,7 @@ import random
 from keras.preprocessing.image import ImageDataGenerator
 
 
-################# Parameters #####################
+#Parameters
 
 path = "C:\\Users\\ABHISHEK KUMAR\\Desktop\\DevJam\\rmodel_trained.p" # folder with all the class folders
 labelFile = r'C:\Users\ABHISHEK KUMAR\Desktop\DevJam\labels.csv' # file with all names of classes
@@ -25,10 +25,8 @@ epochs_val=10
 imageDimesions = (32,32,3)
 testRatio = 0.2    # if 1000 images split will 200 for testing
 validationRatio = 0.2 # if 1000 images 20% of remaining 800 will be 160 for validation
-###################################################
 
-
-############################### Importing of the Images
+#Importing of the Images
 count = 0
 images = []
 classNo = []
@@ -48,14 +46,11 @@ print(" ")
 images = np.array(images)
 classNo = np.array(classNo)
 
-############################### Split Data
+# Split Data
 X_train, X_test, y_train, y_test = train_test_split(images, classNo, test_size=testRatio)
 X_train, X_validation, y_train, y_validation = train_test_split(X_train, y_train, test_size=validationRatio)
 
-# X_train = ARRAY OF IMAGES TO TRAIN
-# y_train = CORRESPONDING CLASS ID
-
-############################### TO CHECK IF NUMBER OF IMAGES MATCHES TO NUMBER OF LABELS FOR EACH DATA SET
+# TO CHECK IF NUMBER OF IMAGES MATCHES TO NUMBER OF LABELS FOR EACH DATA SET
 print("Data Shapes")
 print("Train",end = "");print(X_train.shape,y_train.shape)
 print("Validation",end = "");print(X_validation.shape,y_validation.shape)
@@ -68,11 +63,11 @@ assert(X_validation.shape[1:]==(imageDimesions))," The dimesionas of the Validat
 assert(X_test.shape[1:]==(imageDimesions))," The dimesionas of the Test images are wrong"
 
 
-############################### READ CSV FILE
+# READ CSV FILE
 data=pd.read_csv(labelFile)
 print("data shape ",data.shape,type(data))
 
-############################### DISPLAY SOME SAMPLES IMAGES  OF ALL THE CLASSES
+# DISPLAY SOME SAMPLES IMAGES  OF ALL THE CLASSES
 num_of_samples = []
 cols = 5
 num_classes = noOfClasses
@@ -88,7 +83,7 @@ for i in range(cols):
             num_of_samples.append(len(x_selected))
 
 
-############################### DISPLAY A BAR CHART SHOWING NO OF SAMPLES FOR EACH CATEGORY
+# DISPLAY A BAR CHART SHOWING NO OF SAMPLES FOR EACH CATEGORY
 print(num_of_samples)
 plt.figure(figsize=(12, 4))
 plt.bar(range(0, num_classes), num_of_samples)
@@ -97,8 +92,8 @@ plt.xlabel("Class number")
 plt.ylabel("Number of images")
 plt.show()
 
-############################### PREPROCESSING THE IMAGES
 
+#PREPROCESSING THE IMAGES
 def grayscale(img):
     img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     return img
@@ -116,13 +111,13 @@ X_validation=np.array(list(map(preprocessing,X_validation)))
 X_test=np.array(list(map(preprocessing,X_test)))
 cv2.imshow("GrayScale Images",X_train[random.randint(0,len(X_train)-1)]) # TO CHECK IF THE TRAINING IS DONE PROPERLY
 
-############################### ADD A DEPTH OF 1
+#ADD A DEPTH OF 1
 X_train=X_train.reshape(X_train.shape[0],X_train.shape[1],X_train.shape[2],1)
 X_validation=X_validation.reshape(X_validation.shape[0],X_validation.shape[1],X_validation.shape[2],1)
 X_test=X_test.reshape(X_test.shape[0],X_test.shape[1],X_test.shape[2],1)
 
 
-############################### AUGMENTATAION OF IMAGES: TO MAKEIT MORE GENERIC
+#AUGMENTATAION OF IMAGES: TO MAKEIT MORE GENERIC
 dataGen= ImageDataGenerator(width_shift_range=0.1,   # 0.1 = 10%     IF MORE THAN 1 E.G 10 THEN IT REFFERS TO NO. OF  PIXELS EG 10 PIXELS
                             height_shift_range=0.1,
                             zoom_range=0.2,  # 0.2 MEANS CAN GO FROM 0.8 TO 1.2
@@ -146,7 +141,7 @@ y_train = to_categorical(y_train,noOfClasses)
 y_validation = to_categorical(y_validation,noOfClasses)
 y_test = to_categorical(y_test,noOfClasses)
 
-############################### CONVOLUTION NEURAL NETWORK MODEL
+#CONVOLUTION NEURAL NETWORK MODEL
 def myModel():
     no_Of_Filters=60
     size_of_Filter=(5,5) # THIS IS THE KERNEL THAT MOVE AROUND THE IMAGE TO GET THE FEATURES.
@@ -173,12 +168,12 @@ def myModel():
     return model
 
 
-############################### TRAIN
+#TRAIN
 model = myModel()
 print(model.summary())
 history=model.fit_generator(dataGen.flow(X_train,y_train,batch_size=batch_size_val),steps_per_epoch=steps_per_epoch_val,epochs=epochs_val,validation_data=(X_validation,y_validation),shuffle=1)
 
-############################### PLOT
+#PLOT
 plt.figure(1)
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
