@@ -16,7 +16,6 @@ from keras.preprocessing.image import ImageDataGenerator
 
 
 #Parameters
-
 path = "C:\\Users\\ABHISHEK KUMAR\\Desktop\\DevJam\\rmodel_trained.p" # folder with all the class folders
 labelFile = r'C:\Users\ABHISHEK KUMAR\Desktop\DevJam\labels.csv' # file with all names of classes
 batch_size_val=50  # how many to process together
@@ -83,7 +82,7 @@ for i in range(cols):
             num_of_samples.append(len(x_selected))
 
 
-# DISPLAY A BAR CHART SHOWING NO OF SAMPLES FOR EACH CATEGORY
+# DISPLAY A BAR CHART SHOWING NO. OF SAMPLES FOR EACH CATEGORY
 print(num_of_samples)
 plt.figure(figsize=(12, 4))
 plt.bar(range(0, num_classes), num_of_samples)
