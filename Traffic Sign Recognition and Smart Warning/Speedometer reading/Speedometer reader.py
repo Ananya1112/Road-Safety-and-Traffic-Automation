@@ -253,43 +253,9 @@ def get_current_value(img, min_angle, max_angle, min_value, max_value, x, y, r, 
 
 
 
-    # for testing purposes, found cv2.THRESH_BINARY_INV to perform the best
-
-    # th, dst1 = cv2.threshold(gray2, thresh, maxValue, cv2.THRESH_BINARY);
-
-    # th, dst2 = cv2.threshold(gray2, thresh, maxValue, cv2.THRESH_BINARY_INV);
-
-    # th, dst3 = cv2.threshold(gray2, thresh, maxValue, cv2.THRESH_TRUNC);
-
-    # th, dst4 = cv2.threshold(gray2, thresh, maxValue, cv2.THRESH_TOZERO);
-
-    # th, dst5 = cv2.threshold(gray2, thresh, maxValue, cv2.THRESH_TOZERO_INV);
-
-    # cv2.imwrite('gauge-%s-dst1.%s' % (gauge_number, file_type), dst1)
-
-    # cv2.imwrite('gauge-%s-dst2.%s' % (gauge_number, file_type), dst2)
-
-    # cv2.imwrite('gauge-%s-dst3.%s' % (gauge_number, file_type), dst3)
-
-    # cv2.imwrite('gauge-%s-dst4.%s' % (gauge_number, file_type), dst4)
-
-    # cv2.imwrite('gauge-%s-dst5.%s' % (gauge_number, file_type), dst5)
-
-
-
     # apply thresholding which helps for finding lines
 
     th, dst2 = cv2.threshold(gray2, thresh, maxValue, cv2.THRESH_BINARY_INV);
-
-
-
-    # found Hough Lines generally performs better without Canny / blurring, though there were a couple exceptions where it would only work with Canny / blurring
-
-    #dst2 = cv2.medianBlur(dst2, 5)
-
-    #dst2 = cv2.Canny(dst2, 50, 150)
-
-    #dst2 = cv2.GaussianBlur(dst2, (5, 5), 0)
 
 
 
@@ -306,18 +272,6 @@ def get_current_value(img, min_angle, max_angle, min_value, max_value, x, y, r, 
     maxLineGap = 0
 
     lines = cv2.HoughLinesP(image=dst2, rho=3, theta=np.pi / 180, threshold=100,minLineLength=minLineLength, maxLineGap=0)  # rho is set to 3 to detect more lines, easier to get more then filter them out later
-
-
-
-    #for testing purposes, show all found lines
-
-    # for i in range(0, len(lines)):
-
-    #   for x1, y1, x2, y2 in lines[i]:
-
-    #      cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-
-    #      cv2.imwrite('gauge-%s-lines-test.%s' %(gauge_number, file_type), img)
 
 
 
@@ -367,22 +321,6 @@ def get_current_value(img, min_angle, max_angle, min_value, max_value, x, y, r, 
 
 
 
-    #testing only, show all lines after filtering
-
-    # for i in range(0,len(final_line_list)):
-
-    #     x1 = final_line_list[i][0]
-
-    #     y1 = final_line_list[i][1]
-
-    #     x2 = final_line_list[i][2]
-
-    #     y2 = final_line_list[i][3]
-
-    #     cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
-
-
-
     # assumes the first line is the best one
 
     x1 = final_line_list[0][0]
@@ -397,10 +335,7 @@ def get_current_value(img, min_angle, max_angle, min_value, max_value, x, y, r, 
 
 
 
-    #for testing purposes, show the line overlayed on the original image
-
-    #cv2.imwrite('gauge-1-test.jpg', img)
-
+    # Giving the image with the line drawn as the output
     cv2.imwrite('gauge-%s-lines-2.%s' % (gauge_number, file_type), img)
 
 
@@ -427,23 +362,10 @@ def get_current_value(img, min_angle, max_angle, min_value, max_value, x, y, r, 
 
     res = np.arctan(np.divide(float(y_angle), float(x_angle)))
 
-    #np.rad2deg(res) #coverts to degrees
+  
 
 
-
-    # print x_angle
-
-    # print y_angle
-
-    # print res
-
-    # print np.rad2deg(res)
-
-
-
-    #these were determined by trial and error
-
-    res = np.rad2deg(res)
+    res = np.rad2deg(res) # Converts radians to degree
 
     if x_angle > 0 and y_angle > 0:  #in quadrant I
 
@@ -460,10 +382,6 @@ def get_current_value(img, min_angle, max_angle, min_value, max_value, x, y, r, 
     if x_angle > 0 and y_angle < 0:  #in quadrant IV
 
         final_angle = 270 - res
-
-
-
-    #print final_angle
 
 
 
