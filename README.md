@@ -101,3 +101,70 @@ To run the project, open Command Prompt, and change the directory to where this 
 
 The tech stack we used is mainly Machine Learning and Deep Laerning. We also implemented image processing by OpenCV in it.
 
+## 3.) Traffic Sign Reognition and Smart OverSpeed Warning
+
+Traffic signs provide valuable information to drivers and other road-users. Neglecting them can be fatal.
+Many times in long journey drivers miss road safety signals and don't give much attention on it due to which many accidents occur.
+Hence we are creating a model which will recognize the traffic signals on the road in real time based on Machine Learning and display them on an LCD display.
+Further we try to read the speed of the car by reading the speedometer of a car by OpenCV and if the speed of the car is exceeding the speed limit mentioned on the traffic signs, we will warn the driver of his over-speed.
+
+In future, we can add more factors of speed detection in it, such as, the accident-history of that area, the traffic at that road etc.
+
+### Prerequites:
+
+* Keras
+* Tensorflow
+* NumPy
+* Pickle
+* OpenCV
+* Pandas
+
+The installation procedures of all these are easily available on the internet. Moreover, you can use pip commands to install them. 
+
+In addition to all these, you will also require to download the dataset for this model. It can be downloaded from here :
+https://www.kaggle.com/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign.
+
+### Running:
+
+For traffic sign recognition, download the ZIP folder, and extract it. Open command prompt and change the directory to that folder.
+Then type the folowing command in the prompt:
+
+    python TrafficSign_Main.py
+    
+This will train the dataset and output a trained model file. I have uploaded the trained model although.
+
+After that, run this command:
+ 
+    python TrafficSign_Test.py
+    
+A window will open and there you can show a traffic sign and it will be recognized.
+
+If you want to run the speedometer recognition and reading code, then first add the picutre of the speedometer to the folder in which the code is present, and then type this in the command prompt:
+  
+    python Speedometer reading.py
+    
+
+### Output:
+
+![output image](https://github.com/Ananya1112/Road-Safety-and-Traffic-Automation/blob/master/Traffic%20Sign%20Recognition%20and%20Smart%20Warning/test.jpeg)
+
+For speedometer, outputs:
+
+Calibrated picutre:
+
+![output](https://github.com/Ananya1112/Road-Safety-and-Traffic-Automation/blob/master/Traffic%20Sign%20Recognition%20and%20Smart%20Warning/Speedometer%20reading/gauge-3-calibration.jpg)
+
+### Tech Stack and Algorithms Used:
+
+We have implemented the rCNN based model of Deep Learning. We are also making use of Image processing by OpenCV for live webcam identification of traffic signs.
+
+For speedometer, we have implemented openCV based image processing and some mathematical calculations.
+
+### Future Scope:
+
+In future, we can implement more features in this like, recognition of places hwere traffic signs should be present but are not, and reporting it to the authorites.
+
+In future, we are trying to connect both these and make the driver aware of him being overspeed by reading the traffic sign and the speedometer and comparing the speed of the ar with the speed limit written on the sign board.
+
+
+
