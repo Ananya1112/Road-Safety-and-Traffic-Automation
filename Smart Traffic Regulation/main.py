@@ -1,3 +1,4 @@
+#importing libraries
 import cv2
 import numpy as np
 import tensorflow as tf
@@ -6,8 +7,8 @@ from multiprocessing import Process, Value, Manager, Lock
 import time
 from threading import Timer
 
-# In[62]:
 
+#using coco database
 
 graph = tf.Graph()
 with graph.as_default():
@@ -19,13 +20,13 @@ with graph.as_default():
         tf.import_graph_def(od_graph_def, name='')
 
 
-# In[63]:
+
 
 
 category_index = eval(open('./data/mscoco_label_map.txt', 'r').read())
 
 
-# In[64]:
+#Declaring Testing Videos
   
 
 video1 = cv2.VideoCapture('test2.mp4')
@@ -33,8 +34,8 @@ video2 = cv2.VideoCapture('test3.avi')
 video3 = cv2.VideoCapture('test6.avi')
 STANDARD_TIME=5
 
-# In[65]:
 
+#defining density of lane-1
 
 def vehicleDensity1(max1,vehicle_density1,lock):
     
@@ -88,6 +89,9 @@ def vehicleDensity1(max1,vehicle_density1,lock):
                 
             video1.release()
             cv2.destroyAllWindows()
+
+
+#defining density of lane-2            
             
 def vehicleDensity2(max2,vehicle_density2,lock):
     
@@ -142,6 +146,10 @@ def vehicleDensity2(max2,vehicle_density2,lock):
             video2.release()
             cv2.destroyAllWindows()
 
+
+#defining density of lane-3            
+            
+            
 def vehicleDensity3(max3,vehicle_density3,lock):
     
     with graph.as_default():
