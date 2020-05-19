@@ -207,7 +207,9 @@ The videos for testing are also provided.
 
 We have implemented COCO (Deep Learning for Computer Vision) which is a large image dataset designed for object detection, segmentation, person keypoints detection, stuff segmentation, and caption generation.  to identify the vehicles, and then used openCV Image processing to calculate the vehicle density.
 
-The time for each lane has been decided based on the vehicle density and we have also provided first preference for a lane containong less than 5 cars. 
+![coco](https://github.com/Ananya1112/Road-Safety-and-Traffic-Automation/blob/master/images/coco.jpeg)
+
+The time for each lane has been decided based on the vehicle density and we have also provided first preference for a lane containing less than 5 cars. 
 
 ### Future Scope:
 
