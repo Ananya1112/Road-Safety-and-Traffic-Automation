@@ -162,6 +162,8 @@ We have implemented the rCNN based model of Deep Learning. We are also making us
 
 For speedometer, we have implemented openCV based image processing and some mathematical calculations.
 
+![speedometer](https://github.com/Ananya1112/Road-Safety-and-Traffic-Automation/blob/master/images/Screenshot%20(169).png)
+
 ### Future Scope:
 
 In future, we can implement more features in this like, recognition of places hwere traffic signs should be present but are not, and reporting it to the authorites.
