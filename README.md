@@ -110,7 +110,7 @@ Further we try to read the speed of the car by reading the speedometer of a car 
 
 In future, we can add more factors of speed detection in it, such as, the accident-history of that area, the traffic at that road etc.
 
-### Prerequites:
+### Prerequisites:
 
 * Keras
 * Tensorflow
@@ -168,5 +168,51 @@ In future, we can implement more features in this like, recognition of places hw
 
 In future, we are trying to connect both these and make the driver aware of him being overspeed by reading the traffic sign and the speedometer and comparing the speed of the ar with the speed limit written on the sign board.
 
+## 4.) Smart Traffic Regulation
+
+Traffic regulation in big metro cities is becoming more and more of a challenge day by day. We need more and more traffic – policemen with the ever increasing traffic.
+
+Hence to counter this increase, we have planned to make a automatic traffic control system.
+
+The system is to first detect the vehicles and the vehicle density on each road and then decide on the basis of time, vehicle density, and some X-factors, as to how to manage the traffic.
+
+Its need is ever increasing in the future, because as long as the problem of traffic persists, this will be applicable.
+
+### Prerequisites:
+
+In order to run this software, you will need to download the ZIP of the repository or clone it. Then install the following libraries in Python 3.6 ( recommended ) : 
+
+* OpenCV
+* Numpy
+* Tensorflow
+* Matplotlib
+
+The installation procedures of all these are easily available on the internet. Moreover, you can use pip commands to install them. 
+
+You will also require, in addition to all these, cuda(for faster computation) and hence you shall require Nvidia GPU in your system.
+
+### Running:
+
+To run this code, you need to open command prompt and go inside the folder in which everything is stored, and enter the following command:
+
+    python main.py
+ 
+The videos for testing are also provided. 
+    
+### Output:
+
+![output](https://github.com/Ananya1112/Road-Safety-and-Traffic-Automation/blob/master/Smart%20Traffic%20Regulation/traffic.jpeg)
+
+### Tech stack:
+
+We have implemented Machine Learning to identify the vehicles, and then used openCV Image processing to calculate the vehicle density.
+
+The time for each lane has been decided based on the vehicle density and we have also provided first preference for a lane containong less than 5 cars. 
+
+### Future Scope:
+
+In future, we are planning to implement Deep Learning to identify incoming Ambulance or Fire Fighter's Vehicle and give them the first preference. 
+
+We have also planned to connect all the intersections of a city by raspberry pi, so that they can exchange information between them regarding the amount of traffic they have sent their way, so that each node can predict the traffic control not only on the present vehicle density, but also on the future incoming vehicle density.
 
 
