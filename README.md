@@ -152,7 +152,7 @@ For speedometer, outputs:
 
 Speedometer code's output:
 
-![output](https://github.com/Ananya1112/Road-Safety-and-Traffic-Automation/blob/master/images/Screenshot%20(169).png)
+
 
 ### Tech Stack and Algorithms Used:
 
